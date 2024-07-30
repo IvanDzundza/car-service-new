@@ -1,0 +1,155 @@
+import java.io.FileReader;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+    static Scanner sca = new Scanner(System.in);
+    static Scanner sca1 = new Scanner(System.in);
+    static int scan = 1;
+    static int i = 1;
+    public Car[] cars;
+    private Bus[] buses;
+
+
+    public static void main(String[] args) {
+
+        Base base = new Car();
+
+        Main main = new Main();
+
+        main.initArray(10);
+
+        int menuItem;
+        try {
+            while (scan != 8) {
+                Scanner in = new Scanner(System.in);
+                System.out.println("MENU Auto.Ria.com.ua App ");
+                System.out.println("Write number: " +
+                        "\n 1.Add car and model" +
+                        "\n 2.Edit data" +
+                        "\n 3.Delete the car" +
+                        "\n 4.Search car (by model and year)" +
+                        "\n 5 Search car (by price and year)" +
+                        "\n 6.Output of the list" +
+                        "\n 7.Calculator" +
+                        "\n 8.Help");
+                System.out.println("0. Quit");
+
+                menuItem = in.nextInt();
+
+                switch (menuItem) {
+                    case 1:
+
+                        break;
+                    case 2:
+                        System.out.print("Which car do you want to edit?\n");
+
+
+                        break;
+                    case 3:
+
+                    case 4:
+                        main.printByModelAndNYears();
+                        break;
+                    case 5:
+                        main.printByYearAndNPrice();
+                        break;
+                    case 6:
+                        break;
+
+                    case 7:
+
+                        FileReader fileReaderHelp = new FileReader("help.txt");
+
+                        int h;
+                        while ((h = fileReaderHelp.read()) != -1) {
+                            System.out.print((char) h);
+                        }
+                        fileReaderHelp.close();
+                        System.out.println();
+                        break;
+
+                    case 8:
+
+                        break;
+
+                    case 0:
+                        System.out.println("Good bye!");
+
+                        break;
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Please enter a number from 1 to 8");
+        }
+
+
+
+    }
+
+    public void initArray(int arraySize) {
+
+        cars = new Car[arraySize];
+        buses = new Bus[arraySize];
+
+        Random random = new Random();
+
+        for (int i = 0; i < cars.length; i++) {
+            cars[i] = new Car(i, Car.carModels[random.nextInt(Car.carModels.length)], random.nextInt(2010, 2020), Base.transportPrice[random.nextInt(Base.transportPrice.length)], "AT8282AH", "Седан");
+            buses[i] = new Bus(i, "Sprinter", random.nextInt(2000, 2020), random.nextInt(25000, 140000), "AT8290AH", random.nextInt(10, 30), random.nextBoolean());
+        }
+
+    }
+
+    public void printByModelAndNYears(int start, String modelZadana) {
+        int year;
+
+        for (int i = 0; i < cars.length; i++) {
+            year = cars[i].getYear();
+            if ((((Car) cars[i]).getModel().equalsIgnoreCase(modelZadana)) && (year > start)) {
+                System.out.println(cars[i]);
+            }
+        }
+    }
+
+    public void printByModelAndNYears() {
+        int start;
+        String modelZadana;
+
+        System.out.println("Введіть модель:");
+        Scanner scanner = new Scanner(System.in);
+        modelZadana = scanner.nextLine();
+        System.out.println("Автомобілі експлуатується від вказаного року:");
+        start = scanner.nextInt();
+
+        printByModelAndNYears(start, modelZadana);
+    }
+
+    public void printByYearAndNPrice(int priceZadano, int yearZadano) {
+        int year;
+        int price;
+
+        for (int i = 0; i < cars.length; i++) {
+            year = cars[i].getYear();
+            price = cars[i].getPrice();
+            if ((price > priceZadano) && (year == yearZadano)) {
+                System.out.println(cars[i]);
+            }
+        }
+    }
+
+    public void printByYearAndNPrice() {
+        int priceZadano;
+        int yearZadano;
+
+        System.out.println("Введіть ціну:");
+        Scanner scanner = new Scanner(System.in);
+        priceZadano = scanner.nextInt();
+        System.out.println("Введіть рік:");
+        yearZadano = scanner.nextInt();
+
+        printByYearAndNPrice(priceZadano, yearZadano);
+    }
+}
