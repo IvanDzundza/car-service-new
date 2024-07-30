@@ -25,7 +25,7 @@ public class Main {
         try {
             while (scan != 8) {
                 Scanner in = new Scanner(System.in);
-                System.out.println("MENU Auto.Ria.com.ua App ");
+                System.out.println("MENU Auto.Ria.ua App ");
                 System.out.println("Write number: " +
                         "\n 1.Add car and model" +
                         "\n 2.Edit data" +
@@ -87,6 +87,38 @@ public class Main {
 
 
 
+        Arrays.sort(main.cars);
+        Arrays.sort(main.buses);
+
+        for (int i = 0; i < main.cars.length; i++) {
+            System.out.println(main.cars[i]);
+        }
+
+        for (Bus bus : main.buses) {
+            System.out.println(bus);
+        }
+
+        Arrays.sort(main.cars, new TransportPriceComparator().thenComparing(new TransportModelComparator()));
+        Arrays.sort(main.buses, new TransportModelComparator().thenComparing(new Comparator<Base>() {
+            @Override
+            public int compare(Base o1, Base o2) {
+                return o1.getYear() - o2.getYear();
+            }
+        }));
+
+        for (int i = 0; i < main.cars.length; i++) {
+            System.out.println(main.cars[i]);
+        }
+
+        for (Bus bus : main.buses) {
+            System.out.println(bus);
+        }
+
+
+        main.printByModel("Passat");
+        main.printByModelAndNYears();
+        main.printByYearAndNPrice();
+
     }
 
     public void initArray(int arraySize) {
@@ -99,6 +131,17 @@ public class Main {
         for (int i = 0; i < cars.length; i++) {
             cars[i] = new Car(i, Car.carModels[random.nextInt(Car.carModels.length)], random.nextInt(2010, 2020), Base.transportPrice[random.nextInt(Base.transportPrice.length)], "AT8282AH", "Седан");
             buses[i] = new Bus(i, "Sprinter", random.nextInt(2000, 2020), random.nextInt(25000, 140000), "AT8290AH", random.nextInt(10, 30), random.nextBoolean());
+        }
+
+    }
+
+    public void printByModel(String model) {
+        for (int i = 0; i < cars.length; i++) {
+            if (((Base) cars[i]).getModel().equalsIgnoreCase(model)) {
+                System.out.println(cars[i]);
+            }
+
+
         }
 
     }
@@ -152,4 +195,7 @@ public class Main {
 
         printByYearAndNPrice(priceZadano, yearZadano);
     }
+
+
 }
+
