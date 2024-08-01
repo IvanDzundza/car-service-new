@@ -1,8 +1,10 @@
 import java.io.FileReader;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Random;
-import java.util.Scanner;
+import java.nio.file.Files;
+import java.util.*;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 public class Main {
     static Scanner sca = new Scanner(System.in);
@@ -27,8 +29,8 @@ public class Main {
                 Scanner in = new Scanner(System.in);
                 System.out.println("MENU Auto.Ria.ua App ");
                 System.out.println("Write number: " +
-                        "\n 1.Add car and model" +
-                        "\n 2.Edit data" +
+                        "\n 1.Show list car" +
+                        "\n 2.Show list bus" +
                         "\n 3.Delete the car" +
                         "\n 4.Search car (by model and year)" +
                         "\n 5 Search car (by price and year)" +
@@ -41,12 +43,14 @@ public class Main {
 
                 switch (menuItem) {
                     case 1:
-
+                        for (int i = 0; i < main.cars.length; i++) {
+                            System.out.println(main.cars[i]);
+                        }
                         break;
                     case 2:
-                        System.out.print("Which car do you want to edit?\n");
-
-
+                        for (Bus bus : main.buses) {
+                            System.out.println(bus);
+                        }
                         break;
                     case 3:
 
@@ -72,7 +76,9 @@ public class Main {
                         break;
 
                     case 8:
-
+                        String fileName = "help.txt";
+                        String content = Files.lines(Paths.get(fileName)).reduce("", String::concat);
+                        System.out.println(content);
                         break;
 
                     case 0:
@@ -90,13 +96,9 @@ public class Main {
         Arrays.sort(main.cars);
         Arrays.sort(main.buses);
 
-        for (int i = 0; i < main.cars.length; i++) {
-            System.out.println(main.cars[i]);
-        }
 
-        for (Bus bus : main.buses) {
-            System.out.println(bus);
-        }
+
+
 
         Arrays.sort(main.cars, new TransportPriceComparator().thenComparing(new TransportModelComparator()));
         Arrays.sort(main.buses, new TransportModelComparator().thenComparing(new Comparator<Base>() {
