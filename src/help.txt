@@ -1,6 +1,9 @@
-HOME ANIMALS HELP
+MENU Auto.Ria.ua App
+
  Using our program you can:
+
   !!! Enter the desired item in the command line (from 1 to 8) !!!
+
    1 - Show list cars
      In this item, you can see list cars
 	 
