@@ -1,24 +1,30 @@
 HOME ANIMALS HELP
  Using our program you can:
   !!! Enter the desired item in the command line (from 1 to 8) !!!
-   1 - Add animal and name
-     In this item, you can add an animal and its name by entering this data in the command line.
+   1 - Show list cars
+     In this item, you can see list cars
 	 
-   2 - Edit data about animal
-     In this item, you can edit the data that has already been entered about the animal, if you select which data you want to edit and enter new data in the command line.
+   2 - Show list buses
+     In this item, you can see list buses
 	 
-   3 - Delete the animal
-     In this item, you can delete the data that has already been entered about the animal, if you select which data to delete.
+   3 - Search (by model)
+     In this item, you can see list cars by model.
+
+   4 - Search (by model and year)
+     In this item, you can see list cars by model and year.
 	 
-   4 - Search animal
-     In this item, you can find the data that has already been written to the file.
-	 
-   5 - Output of the list our animal
-     With the help of this item, you can display a list of all animals that are currently entered.
-	 
-   6 - Calculator animals
-     Select this item if you want to view the count of cats, dogs, fish, and guinea pigs.
-	 
+   5 - Search (by price and year)
+     In this item, you can see list cars by price and year.
+
+   6 - Filter Cars With Insureance
+     In this item, you can see list cars by price and year.
+
+   7 - Count cars by model
+     In this item, you can see count cars by model.
+
+   8 - Help
+     In this item, you can see support telephone number.
+
    0 - Quit and file close
      Select this option if you want to close the program and exit it.
 	 

@@ -33,11 +33,11 @@ public class Main {
                 System.out.println("Write number: " +
                         "\n 1. Show list car" +
                         "\n 2. Show list bus" +
-                        "\n 3. Search (by model Passat)" +
+                        "\n 3. Search (by model: Passat)" +
                         "\n 4. Search (by model and year)" +
                         "\n 5. Search (by price and year)" +
                         "\n 6. Filter Cars With Insureance" +
-                        "\n 7. Calculator" +
+                        "\n 7. Count cars by model" +
                         "\n 8. Help");
                 System.out.println("0. Quit");
 
@@ -66,7 +66,7 @@ public class Main {
                         cars.filterCarsWithInsureanceByStream();
                         break;
                     case 7:
-                        System.out.println("Else you need help call us 08003002001");
+                        cars.countCarsWithModelByStream("Passat");
                         break;
                     case 8:
                         System.out.println("Else you need help call us 08003002001");
