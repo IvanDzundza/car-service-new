@@ -21,6 +21,8 @@ public class Main {
 
         Main main = new Main();
 
+        CarList cars = new CarList();
+
         main.initArray(10);
 
         int menuItem;
@@ -29,14 +31,14 @@ public class Main {
                 Scanner in = new Scanner(System.in);
                 System.out.println("MENU Auto.Ria.ua App ");
                 System.out.println("Write number: " +
-                        "\n 1.Show list car" +
-                        "\n 2.Show list bus" +
-                        "\n 3.Delete the car" +
-                        "\n 4.Search car (by model and year)" +
-                        "\n 5 Search car (by price and year)" +
-                        "\n 6.Output of the list" +
-                        "\n 7.Calculator" +
-                        "\n 8.Help");
+                        "\n 1. Show list car" +
+                        "\n 2. Show list bus" +
+                        "\n 3. Search (by model Passat)" +
+                        "\n 4. Search (by model and year)" +
+                        "\n 5. Search (by price and year)" +
+                        "\n 6. Filter Cars With Insureance" +
+                        "\n 7. Calculator" +
+                        "\n 8. Help");
                 System.out.println("0. Quit");
 
                 menuItem = in.nextInt();
@@ -53,7 +55,7 @@ public class Main {
                         }
                         break;
                     case 3:
-
+                        main.printByModel("Passat");
                     case 4:
                         main.printByModelAndNYears();
                         break;
@@ -61,29 +63,16 @@ public class Main {
                         main.printByYearAndNPrice();
                         break;
                     case 6:
+                        cars.filterCarsWithInsureanceByStream();
                         break;
-
                     case 7:
-
-                        FileReader fileReaderHelp = new FileReader("help.txt");
-
-                        int h;
-                        while ((h = fileReaderHelp.read()) != -1) {
-                            System.out.print((char) h);
-                        }
-                        fileReaderHelp.close();
-                        System.out.println();
+                        System.out.println("Else you need help call us 08003002001");
                         break;
-
                     case 8:
-                        String fileName = "help.txt";
-                        String content = Files.lines(Paths.get(fileName)).reduce("", String::concat);
-                        System.out.println(content);
+                        System.out.println("Else you need help call us 08003002001");
                         break;
-
                     case 0:
                         System.out.println("Good bye!");
-
                         break;
                 }
             }
@@ -92,12 +81,8 @@ public class Main {
         }
 
 
-
         Arrays.sort(main.cars);
         Arrays.sort(main.buses);
-
-
-
 
 
         Arrays.sort(main.cars, new TransportPriceComparator().thenComparing(new TransportModelComparator()));
